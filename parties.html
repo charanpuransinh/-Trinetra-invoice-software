@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trinetra - Parties</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="parties">
+    <div class="tiranga-header"></div>
+
+    <div class="container">
+        <header style="text-align: center; margin-bottom: 20px;">
+            <h1 style="color: #FFD700; font-size: 1.5rem;">PARTY MANAGEMENT</h1>
+        </header>
+
+        <div class="card" style="border-style: dashed;">
+            <h3 style="font-size: 0.9rem; margin-bottom: 10px;">➕ Add New Party</h3>
+            <input type="text" id="pName" placeholder="पार्टी का नाम (जरूरी)">
+            <input type="text" id="pGst" placeholder="GST नंबर (यदि है)">
+            <input type="number" id="pPhone" placeholder="मोबाइल नंबर">
+            <button class="btn-gold" onclick="addParty()">SAVE PARTY</button>
+        </div>
+
+        <div class="card">
+            <h3 style="font-size: 0.9rem; margin-bottom: 10px;">👥 Registered Parties</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>नाम</th>
+                            <th>GST / फोन</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="partyList">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="parties.html" class="nav-item active"><span class="nav-icon">👥</span><span class="nav-text">Party</span></a>
+        <a href="billing.html" class="nav-item"><span class="nav-icon">📄</span><span class="nav-text">Bill</span></a>
+        <a href="index.html" class="nav-item"><span class="nav-icon">🏠</span><span class="nav-text">Home</span></a>
+        <a href="items.html" class="nav-item"><span class="nav-icon">📦</span><span class="nav-text">Stock</span></a>
+        <a href="profile.html" class="nav-item"><span class="nav-icon">👤</span><span class="nav-text">Profile</span></a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
