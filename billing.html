@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trinetra - Billing</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="billing">
+    <div class="tiranga-header"></div>
+
+    <div class="container">
+        <header style="text-align: center; margin-bottom: 20px;">
+            <h1 style="color: #FFD700; font-size: 1.5rem;">BILLING & QUOTE</h1>
+        </header>
+
+        <div class="card" style="display: flex; gap: 10px;">
+            <button id="typeInv" class="btn-gold" onclick="setBillType('Invoice')" style="flex:1;">INVOICE</button>
+            <button id="typeQuo" class="btn-red" onclick="setBillType('Quotation')" style="flex:1; background: #555;">QUOTE</button>
+        </div>
+
+        <div class="card">
+            <select id="billParty"><option value="">Select Party</option></select>
+            <div style="display: flex; gap: 5px; margin-top: 10px;">
+                <select id="billItem" style="flex: 2;"><option value="">Select Item</option></select>
+                <input type="number" id="billQty" placeholder="Qty" style="flex: 1; margin-bottom: 0;">
+                <button class="btn-gold" onclick="addToCart()" style="flex: 0.5;">+</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr><th>Item</th><th>Qty</th><th>Total</th></tr>
+                    </thead>
+                    <tbody id="cartList"></tbody>
+                </table>
+            </div>
+            <h2 style="text-align: right; margin-top: 15px; color: #FFD700;">Total: ₹<span id="grandTotal">0</span></h2>
+            <button class="btn-gold" style="margin-top: 15px; background: #27ae60; color: #fff;" onclick="generateBill()">SAVE & PRINT</button>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="parties.html" class="nav-item"><span class="nav-icon">👥</span><span class="nav-text">Party</span></a>
+        <a href="billing.html" class="nav-item active"><span class="nav-icon">📄</span><span class="nav-text">Bill</span></a>
+        <a href="index.html" class="nav-item"><span class="nav-icon">🏠</span><span class="nav-text">Home</span></a>
+        <a href="items.html" class="nav-item"><span class="nav-icon">📦</span><span class="nav-text">Stock</span></a>
+        <a href="profile.html" class="nav-item"><span class="nav-icon">👤</span><span class="nav-text">Profile</span></a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
