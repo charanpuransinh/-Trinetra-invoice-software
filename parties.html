@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trinetra - Party List</title>
+    <style>
+        /* Zero-Scroll & Theme Sync */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        html, body { height: 100%; width: 100%; overflow: hidden; background-color: #000; color: #fff; }
+        body { display: flex; flex-direction: column; }
+
+        .container { flex: 1; display: flex; flex-direction: column; padding: 8px; }
+
+        /* 1. Top Logo Header */
+        .header {
+            text-align: center;
+            border: 1px solid #FFD700;
+            padding: 8px;
+            margin-bottom: 8px;
+            background: #0a0a0a;
+        }
+        .header h1 { font-size: 18px; color: #FFD700; letter-spacing: 2px; font-weight: 900; }
+
+        /* 2. Main Party Display Box */
+        .party-box {
+            border: 2px solid #FFD700;
+            background: #111;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .title-bar {
+            background: #FFD700;
+            color: #000;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 6px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        /* Party Details List */
+        .scroll-area { overflow-y: auto; flex: 1; padding: 5px; }
+        
+        .party-card {
+            border: 1px solid #333;
+            margin-bottom: 10px;
+            background: #050505;
+        }
+
+        /* Party Name - Bada aur Bold */
+        .party-name-row {
+            background: #222;
+            padding: 12px;
+            border-bottom: 1px solid #FFD700;
+        }
+        .party-name {
+            font-size: 18px;
+            font-weight: 900;
+            color: #FFD700;
+            text-transform: uppercase;
+        }
+
+        /* Step-by-Step Info Lines */
+        .info-row {
+            padding: 10px;
+            border-bottom: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+        }
+        .label { font-size: 9px; color: #FFD700; text-transform: uppercase; margin-bottom: 2px; }
+        .value { font-size: 13px; font-weight: bold; color: #fff; }
+
+        /* Two Column Row (GST & Contact) */
+        .split-row { display: flex; border-bottom: 1px solid #222; }
+        .split-col { flex: 1; padding: 10px; border-right: 1px solid #222; }
+        .split-col:last-child { border-right: none; }
+
+        /* Remark Section */
+        .remark-box {
+            padding: 8px 10px;
+            background: #1a1a1a;
+            font-style: italic;
+            font-size: 11px;
+            color: #aaa;
+        }
+
+        /* 3. Action Buttons */
+        .footer-action { margin-top: 8px; display: flex; gap: 5px; }
+        .btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            font-weight: 900;
+            font-size: 14px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        .btn-add { background: #FFD700; color: #000; }
+        .btn-edit { background: #333; color: #FFD700; border: 1px solid #FFD700; }
+
+        /* 4. Navigation Bar - Homepage Style */
+        .nav-bar {
+            height: 75px;
+            display: flex;
+            border-top: 2px solid #FFD700;
+            background: #000;
+        }
+        .nav-item {
+            flex: 1;
+            text-align: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .active { color: #FFD700; }
+        .nav-item span { font-size: 24px; margin-bottom: 4px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header"><h1>TRISHUL TRINETRA</h1></div>
+
+    <div class="party-box">
+        <div class="title-bar">PARTY MASTER LIST</div>
+        
+        <div class="scroll-area">
+            <div class="party-card">
+                <div class="party-name-row">
+                    <div class="party-name">SHREE RAM ENTERPRISE</div>
+                </div>
+
+                <div class="split-row">
+                    <div class="split-col">
+                        <span class="label">GST Number</span>
+                        <span class="value">24ABCDE1234F1Z</span>
+                    </div>
+                    <div class="split-col">
+                        <span class="label">Contact No</span>
+                        <span class="value">+91 9876543210</span>
+                    </div>
+                </div>
+
+                <div class="info-row">
+                    <span class="label">Email ID</span>
+                    <span class="value">contact@shreeram.com</span>
+                </div>
+
+                <div class="info-row">
+                    <span class="label">Full Address</span>
+                    <span class="value">PLOT NO 45, GIDC INDUSTRIAL AREA, RAJKOT, GUJARAT - 360001</span>
+                </div>
+
+                <div class="remark-box">
+                    REMARK: Regular party, payment terms 30 days.
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <div class="footer-action">
+        <button class="btn btn-edit">EDIT PARTY</button>
+        <button class="btn btn-add">ADD NEW PARTY</button>
+    </div>
+</div>
+
+<nav class="nav-bar">
+    <a href="index.html" class="nav-item"><span>🏠</span>HOME</a>
+    <a href="parties.html" class="nav-item active"><span>👥</span>PARTY</a>
+    <a href="billing.html" class="nav-item"><span>🧾</span>BILL</a>
+    <a href="items.html" class="nav-item"><span>📦</span>ITEM</a>
+    <a href="profile.html" class="nav-item"><span>👤</span>USER</a>
+</nav>
+
+</body>
+  </html>
+  
