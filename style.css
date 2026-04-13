@@ -1,0 +1,43 @@
+/* TRINETRA FINAL MOBILE-FIRST STYLE */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background: #000; color: #fff; padding-bottom: 90px; overflow-x: hidden; }
+
+.tiranga-header {
+    height: 6px;
+    background: linear-gradient(to right, #FF9933 33%, #fff 33%, #fff 66%, #138808 66%);
+    position: sticky; top: 0; z-index: 1000;
+}
+
+.container { width: 95%; margin: auto; padding-top: 15px; max-width: 1200px; }
+
+/* कार्ड और टेबल का नया लुक */
+.card {
+    background: #111;
+    border: 1px solid #FFD700;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.85rem; }
+th { text-align: left; color: #FFD700; border-bottom: 1px solid #333; padding: 8px; }
+td { padding: 8px; border-bottom: 1px solid #222; vertical-align: middle; }
+
+/* बटन और इनपुट */
+input, select {
+    width: 100%; background: #1a1a1a; border: 1px solid #444;
+    color: #fff; padding: 10px; margin-bottom: 8px; border-radius: 5px;
+}
+.btn-gold { background: #FFD700; color: #000; border: none; padding: 10px; font-weight: bold; width: 100%; border-radius: 5px; cursor: pointer; }
+
+/* नीचे की पट्टी (Fixing Navigation) */
+.bottom-nav {
+    position: fixed; bottom: 0; left: 0; width: 100%;
+    background: #0a0a0a; border-top: 2px solid #FFD700;
+    display: grid; grid-template-columns: repeat(5, 1fr); 
+    padding: 10px 0; z-index: 2000;
+}
+.nav-item { text-decoration: none; text-align: center; color: #777; transition: 0.3s; }
+.nav-item.active { color: #FFD700; }
+.nav-icon { display: block; font-size: 1.4rem; margin-bottom: 2px; }
+.nav-text { font-size: 0.65rem; font-weight: bold; }
