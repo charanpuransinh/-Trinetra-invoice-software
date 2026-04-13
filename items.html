@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trinetra - Inventory</title>
+    <style>
+        /* Global Zero-Scroll & Theme */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        html, body { height: 100%; width: 100%; overflow: hidden; background-color: #000; color: #fff; }
+        body { display: flex; flex-direction: column; }
+
+        .container { flex: 1; display: flex; flex-direction: column; padding: 8px; }
+
+        /* Branding */
+        .header {
+            text-align: center;
+            border: 1px solid #FFD700;
+            padding: 8px;
+            margin-bottom: 8px;
+            background: #0a0a0a;
+        }
+        .header h1 { font-size: 18px; color: #FFD700; letter-spacing: 2px; }
+
+        /* Main Table Section */
+        .inventory-box {
+            border: 2px solid #FFD700;
+            background: #111;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .title-bar {
+            background: #FFD700;
+            color: #000;
+            font-size: 11px;
+            font-weight: 900;
+            padding: 6px;
+            text-align: center;
+        }
+
+        /* Table Logic */
+        .scroll-area { overflow-y: auto; flex: 1; }
+        table { width: 100%; border-collapse: collapse; }
+        th {
+            position: sticky; top: 0;
+            background: #222;
+            color: #FFD700;
+            font-size: 10px;
+            padding: 10px 4px;
+            text-align: left;
+            border-bottom: 2px solid #FFD700;
+            z-index: 10;
+        }
+        td {
+            padding: 10px 4px;
+            font-size: 12px;
+            border-bottom: 1px solid #333;
+            font-weight: bold;
+        }
+
+        /* Column Colors */
+        .text-yellow { color: #FFD700; }
+        .text-green { color: #00FF00; } /* For IN */
+        .text-red { color: #FF4444; }   /* For OUT */
+        
+        /* Edit/Exchange Button */
+        .btn-edit {
+            background: #FFD700;
+            color: #000;
+            border: none;
+            padding: 4px 8px;
+            font-size: 10px;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        /* Footer Button */
+        .footer-action { margin-top: 8px; }
+        .btn-add {
+            background: #FFD700;
+            color: #000;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            font-weight: 900;
+            font-size: 14px;
+        }
+
+        /* Nav Bar */
+        .nav-bar {
+            height: 65px;
+            display: flex;
+            border-top: 2px solid #FFD700;
+            background: #000;
+        }
+        .nav-item {
+            flex: 1;
+            text-align: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 10px;
+            padding-top: 15px;
+        }
+        .active { color: #FFD700; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header"><h1>TRISHUL TRINETRA</h1></div>
+
+    <div class="inventory-box">
+        <div class="title-bar">STOCK IN / OUT MANAGER</div>
+        
+        <div class="scroll-area">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ITEM</th>
+                        <th>IN</th>
+                        <th>OUT</th>
+                        <th>STOCK</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>STEEL 12MM</td>
+                        <td class="text-green">+100</td>
+                        <td class="text-red">-20</td>
+                        <td class="text-yellow">80</td>
+                        <td><button class="btn-edit">EDIT</button></td>
+                    </tr>
+                    <tr>
+                        <td>CEMENT BAG</td>
+                        <td class="text-green">+500</td>
+                        <td class="text-red">-150</td>
+                        <td class="text-yellow">350</td>
+                        <td><button class="btn-edit">EDIT</button></td>
+                    </tr>
+                    <tr>
+                        <td>BRICKS A</td>
+                        <td class="text-green">+2k</td>
+                        <td class="text-red">-500</td>
+                        <td class="text-yellow">1.5k</td>
+                        <td><button class="btn-edit">EDIT</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="footer-action">
+        <button class="btn-add">ADD NEW TRANSACTION</button>
+    </div>
+</div>
+
+<nav class="nav-bar">
+    <a href="index.html" class="nav-item">🏠<br>HOME</a>
+    <a href="parties.html" class="nav-item">👥<br>PARTY</a>
+    <a href="billing.html" class="nav-item">🧾<br>BILL</a>
+    <a href="items.html" class="nav-item active">📦<br>ITEM</a>
+    <a href="profile.html" class="nav-item">👤<br>USER</a>
+</nav>
+
+</body>
+  </html>
+      
