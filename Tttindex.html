@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trinetra Pro</title>
+    <style>
+        /* Global Reset - Force Zero Scroll */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        
+        html, body { 
+            height: 100%; 
+            width: 100%; 
+            overflow: hidden; 
+            background-color: #000000;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            color: #ffffff;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            justify-content: space-between;
+        }
+
+        /* Header - Gold Border */
+        .header {
+            text-align: center;
+            border: 1px solid #FFD700;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        .header h1 { font-size: 18px; color: #FFD700; letter-spacing: 2px; font-weight: 900; }
+
+        /* Profile Box - Line-wise Data Alignment */
+        .profile-box {
+            background-color: #0a0a0a;
+            border: 2px solid #FFD700;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+        .comp-name { font-size: 16px; font-weight: 800; color: #FFD700; margin-bottom: 6px; text-transform: uppercase; }
+        .comp-detail { font-size: 11px; margin-top: 4px; color: #cccccc; display: block; }
+        .comp-divider { height: 1px; background-color: #FFD700; margin: 8px 0; opacity: 0.4; }
+
+        /* 4 Boxes Grid - Perfect Line-wise Fit */
+        .grid-4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            flex: 1;
+        }
+        .big-card {
+            background-color: #0a0a0a;
+            border: 2px solid #FFD700;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .card-header {
+            background-color: #FFD700;
+            color: #000000;
+            font-size: 11px;
+            font-weight: 900;
+            padding: 4px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            text-align: center;
+        }
+        .card-val { 
+            font-size: 13px; 
+            font-weight: 700; 
+            color: #ffffff; 
+            line-height: 1.4; 
+        }
+
+        /* Action Area */
+        .action-area { margin: 12px 0; }
+        .btn-gen {
+            background-color: #FFD700;
+            color: #000000;
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 900;
+            width: 100%;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        /* Navigation Bar */
+        .nav-bar {
+            height: 70px;
+            background-color: #000000;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid #FFD700;
+        }
+        .nav-link {
+            text-align: center;
+            flex: 1;
+            font-size: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .nav-link.active { color: #FFD700; }
+        .nav-link i { display: block; font-size: 20px; margin-bottom: 3px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>TRISHUL TRINETRA</h1>
+    </div>
+
+    <div class="profile-box">
+        <div class="comp-name">CHARAN PURANSINGH</div>
+        <span class="comp-detail">MOBILE: +91 98765 43210</span>
+        <span class="comp-detail">CITY: RAJKOT, GUJARAT</span>
+        <div class="comp-divider"></div>
+        <span class="comp-detail">GSTIN: 24ABCDE1234F1Z</span>
+    </div>
+
+    <div class="grid-4">
+        <div class="big-card">
+            <div class="card-header">PARTY</div>
+            <div class="card-content">
+                <div class="card-val">RAM<br>ENTERPRISE</div>
+            </div>
+        </div>
+        <div class="big-card">
+            <div class="card-header">ITEMS</div>
+            <div class="card-content">
+                <div class="card-val">STEEL /<br>CEMENT</div>
+            </div>
+        </div>
+        <div class="big-card">
+            <div class="card-header">ACCOUNT</div>
+            <div class="card-content">
+                <div class="card-val">TOTAL INR<br>24,500.00</div>
+            </div>
+        </div>
+        <div class="big-card">
+            <div class="card-header">DASHBOARD</div>
+            <div class="card-content">
+                <div class="card-val">SYSTEM<br>MANAGEMENT</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-area">
+        <button class="btn-gen">GENERATE BILL</button>
+    </div>
+</div>
+
+<nav class="nav-bar">
+    <a href="index.html" class="nav-link active"><i>🏠</i>HOME</a>
+    <a href="parties.html" class="nav-link"><i>👥</i>PARTY</a>
+    <a href="billing.html" class="nav-link"><i>🧾</i>BILL</a>
+    <a href="items.html" class="nav-link"><i>📦</i>ITEM</a>
+    <a href="profile.html" class="nav-link"><i>👤</i>USER</a>
+</nav>
+
+</body>
+</html>
