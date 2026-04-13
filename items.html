@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trinetra - Stock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="items">
+    <div class="tiranga-header"></div>
+
+    <div class="container">
+        <header style="text-align: center; margin-bottom: 20px;">
+            <h1 style="color: #FFD700; font-size: 1.5rem;">ITEM & STOCK</h1>
+        </header>
+
+        <div class="card" style="border-style: dashed;">
+            <h3 style="font-size: 0.9rem; margin-bottom: 10px;">➕ Add New Item</h3>
+            <input type="text" id="itemName" placeholder="Item Name">
+            <input type="text" id="itemHsn" placeholder="HSN Code">
+            <input type="number" id="itemGst" placeholder="GST %">
+            <input type="number" id="itemPrice" placeholder="Selling Price">
+            <input type="number" id="itemStock" placeholder="Current Stock Qty">
+            <button class="btn-gold" onclick="addItem()">SAVE ITEM</button>
+        </div>
+
+        <div class="card">
+            <h3 style="font-size: 0.9rem; margin-bottom: 10px;">📦 Current Stock</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Rate/GST</th>
+                            <th>Stock</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="itemList">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="parties.html" class="nav-item"><span class="nav-icon">👥</span><span class="nav-text">Party</span></a>
+        <a href="billing.html" class="nav-item"><span class="nav-icon">📄</span><span class="nav-text">Bill</span></a>
+        <a href="index.html" class="nav-item"><span class="nav-icon">🏠</span><span class="nav-text">Home</span></a>
+        <a href="items.html" class="nav-item active"><span class="nav-icon">📦</span><span class="nav-text">Stock</span></a>
+        <a href="profile.html" class="nav-item"><span class="nav-icon">👤</span><span class="nav-text">Profile</span></a>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
