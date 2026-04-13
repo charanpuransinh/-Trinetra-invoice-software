@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trinetr Popup Control</title>
+    <style>
+        /* Base Styling */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        html, body { height: 100%; width: 100%; overflow: hidden; background-color: #000; color: #fff; }
+        body { display: flex; flex-direction: column; }
+        .container { flex: 1; display: flex; flex-direction: column; padding: 5px; }
+
+        .header { text-align: center; padding: 12px 0; border-bottom: 1px solid #443c1a; background: #000; }
+        .header h1 { font-size: 18px; color: #FFD700; font-weight: 900; letter-spacing: 1px; }
+
+        /* Slider for 3 Columns */
+        .master-slider { flex: 1; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px; padding: 10px 0; }
+        .col-box { min-width: 95%; flex: 0 0 95%; border: 1px solid #443c1a; background: #050505; display: flex; flex-direction: column; scroll-snap-align: center; border-radius: 8px; }
+        
+        /* Headers for each column */
+        .col-title { padding: 12px; font-weight: 900; text-align: center; font-size: 13px; border-radius: 8px 8px 0 0; }
+        .sale-col .col-title { background: #004d00; color: #fff; }
+        .buy-col .col-title { background: #4d0000; color: #fff; }
+        .office-col .col-title { background: #8b7500; color: #fff; }
+
+        /* Table Grid */
+        .scroll-area { overflow-y: auto; flex: 1; }
+        table { width: 100%; border-collapse: collapse; }
+        th { font-size: 10px; padding: 12px 5px; border: 1px solid #443c1a; background: #111; color: #FFD700; position: sticky; top: 0; }
+        td { padding: 15px 5px; font-size: 12px; border: 1px solid #443c1a; text-align: center; font-weight: bold; }
+        .p-name { text-align: left; padding-left: 8px; color: #FFD700; }
+
+        /* MODERN POPUP (Bottom Sheet) */
+        .modal {
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.85);
+            justify-content: center; align-items: flex-end;
+        }
+        .modal-content {
+            background: #111; width: 100%; padding: 25px;
+            border-radius: 25px 25px 0 0; border-top: 4px solid #FFD700;
+            animation: slideUp 0.3s ease-out;
+        }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+        .modal-content h2 { color: #FFD700; margin-bottom: 20px; font-size: 20px; text-align: center; font-weight: 900; }
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; font-size: 11px; color: #aaa; margin-bottom: 5px; text-transform: uppercase; }
+        .input-group input { 
+            width: 100%; background: #222; border: 1px solid #443c1a; 
+            padding: 18px; color: #fff; font-size: 18px; border-radius: 10px; font-weight: bold;
+        }
+
+        /* Buttons */
+        .btn-row { display: flex; gap: 10px; margin-top: 20px; }
+        .btn-cancel { flex: 1; padding: 18px; background: #333; color: #fff; border: none; font-weight: 900; border-radius: 10px; }
+        .btn-save { flex: 2; padding: 18px; background: #FFD700; color: #000; border: none; font-weight: 900; border-radius: 10px; font-size: 16px; }
+
+        .btn-add-main { background: #FFD700; color: #000; padding: 16px; border: none; font-weight: 900; width: 100%; font-size: 14px; border-radius: 0 0 8px 8px; }
+
+        /* Bottom Nav Sync */
+        .nav-bar { height: 70px; display: flex; border-top: 1px solid #443c1a; background: #000; }
+        .nav-item { flex: 1; text-align: center; color: #888; text-decoration: none; font-size: 10px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .active { color: #FFD700; }
+        .nav-item span { font-size: 22px; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header"><h1>TRISHUL TRINETRA</h1></div>
+
+    <div class="master-slider">
+        
+        <div class="col-box sale-col">
+            <div class="col-title">SALE PARTIES (RECEIVABLE)</div>
+            <div class="scroll-area">
+                <table>
+                    <thead><tr><th style="width:40%">PARTY NAME</th><th>BILL</th><th>ADV.</th><th>BAL.</th></tr></thead>
+                    <tbody id="saleBody"></tbody>
+                </table>
+            </div>
+            <button class="btn-add-main" onclick="openPopup('sale')">+ NEW SALE ENTRY</button>
+        </div>
+
+        <div class="col-box buy-col">
+            <div class="col-title">BUY PARTIES (PAYABLE)</div>
+            <div class="scroll-area">
+                <table>
+                    <thead><tr><th style="width:40%">SUPPLIER</th><th>BILL</th><th>PAID</th><th>PEND.</th></tr></thead>
+                    <tbody id="buyBody"></tbody>
+                </table>
+            </div>
+            <button class="btn-add-main" onclick="openPopup('buy')">+ NEW BUY ENTRY</button>
+        </div>
+
+        <div class="col-box office-col">
+            <div class="col-title">OFFICE EXPENSES</div>
+            <div class="scroll-area">
+                <table>
+                    <thead><tr><th style="width:40%">ITEM NAME</th><th>DATE</th><th>MODE</th><th>AMT</th></tr></thead>
+                    <tbody id="officeBody"></tbody>
+                </table>
+            </div>
+            <button class="btn-add-main" onclick="openPopup('office')">+ NEW EXPENSE</button>
+        </div>
+
+    </div>
+</div>
+
+<div id="entryModal" class="modal">
+    <div class="modal-content">
+        <h2 id="modalTitle">ENTRY FORM</h2>
+        <input type="hidden" id="entryType">
+        
+        <div class="input-group">
+            <label id="labelName">PARTY / ITEM NAME</label>
+            <input type="text" id="pName" placeholder="Type here...">
+        </div>
+        <div class="input-group">
+            <label id="labelBill">AMOUNT / BILL VALUE</label>
+            <input type="number" id="pBill" placeholder="0.00">
+        </div>
+        <div class="input-group">
+            <label id="labelAdv">PAID / ADVANCE</label>
+            <input type="number" id="pAdv" placeholder="0.00">
+        </div>
+
+        <div class="btn-row">
+            <button class="btn-cancel" onclick="closePopup()">CANCEL</button>
+            <button class="btn-save" onclick="handleEntry()">SAVE DATA</button>
+        </div>
+    </div>
+</div>
+
+<nav class="nav-bar">
+    <a href="index.html" class="nav-item"><span>🏠</span>HOME</a>
+    <a href="parties.html" class="nav-item"><span>👥</span>PARTY</a>
+    <a href="master_acc.html" class="nav-item active"><span>💰</span>ACC.</a>
+    <a href="management.html" class="nav-item"><span>📊</span>MGMT</a>
+    <a href="items.html" class="nav-item"><span>📦</span>ITEM</a>
+</nav>
+
+<script>
+    const modal = document.getElementById('entryModal');
+
+    function openPopup(type) {
+        document.getElementById('entryType').value = type;
+        document.getElementById('modalTitle').innerText = type.toUpperCase() + " ENTRY";
+        
+        // Labels customization based on column
+        if(type === 'office') {
+            document.getElementById('labelBill').innerText = "TOTAL EXPENSE";
+            document.getElementById('labelAdv').innerText = "DATE (e.g. 15-APR)";
+            document.getElementById('pAdv').type = "text"; 
+        } else {
+            document.getElementById('labelBill').innerText = "TOTAL BILL AMT";
+            document.getElementById('labelAdv').innerText = "PAID / ADVANCE";
+            document.getElementById('pAdv').type = "number";
+        }
+        
+        modal.style.display = 'flex';
+    }
+
+    function closePopup() {
+        modal.style.display = 'none';
+        document.getElementById('pName').value = '';
+        document.getElementById('pBill').value = '';
+        document.getElementById('pAdv').value = '';
+    }
+
+    function handleEntry() {
+        let type = document.getElementById('entryType').value;
+        let name = document.getElementById('pName').value;
+        let bill = document.getElementById('pBill').value;
+        let adv = document.getElementById('pAdv').value;
+
+        if(!name) { alert("Please fill details!"); return; }
+
+        let targetBody = document.getElementById(type + 'Body');
+        let newRow = targetBody.insertRow();
+        
+        if(type === 'office') {
+            newRow.innerHTML = `<td class="p-name">${name}</td><td>${adv}</td><td>CASH</td><td>${bill}</td>`;
+        } else {
+            let balance = parseFloat(bill) - parseFloat(adv || 0);
+            let balColor = (type === 'sale') ? "#00FF00" : "#FF4444";
+            newRow.innerHTML = `
+                <td class="p-name">${name}</td>
+                <td>${bill}</td>
+                <td>${adv}</td>
+                <td style="color:${balColor}">${balance}</td>
+            `;
+        }
+
+        // SAVE LOGIC (LocalStorage)
+        saveToDevice();
+        closePopup();
+    }
+
+    function saveToDevice() {
+        const data = {
+            sale: document.getElementById('saleBody').innerHTML,
+            buy: document.getElementById('buyBody').innerHTML,
+            office: document.getElementById('officeBody').innerHTML
+        };
+        localStorage.setItem('trinetra_data', JSON.stringify(data));
+    }
+
+    window.onload = function() {
+        const saved = JSON.parse(localStorage.getItem('trinetra_data'));
+        if(saved) {
+            document.getElementById('saleBody').innerHTML = saved.sale || '';
+            document.getElementById('buyBody').innerHTML = saved.buy || '';
+            document.getElementById('officeBody').innerHTML = saved.office || '';
+        }
+    }
+</script>
+
+</body>
+</html>
