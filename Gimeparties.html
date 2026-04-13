@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trinetra - Party Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* होम पेज जैसा डार्क थीम और जीरो स्क्रॉल */
+        body {
+            background: #000;
+            color: #fff;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 10px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ऊपर की सुनहरी पट्टी */
+        .top-header {
+            text-align: center;
+            border: 2px solid #ffc107;
+            background: #111;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .top-header h2 {
+            font-size: 18px;
+            color: #ffc107;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* पार्टी इंफॉर्मेशन - शार्प कोर्नर्स */
+        .info-card {
+            border: 2px solid #ffc107;
+            background: #111;
+            margin-bottom: 10px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #333;
+        }
+        .info-row:last-child { border-bottom: none; }
+
+        .label { font-size: 12px; color: #888; font-weight: bold; }
+        .value { font-size: 14px; color: #ffc107; font-weight: bold; }
+
+        /* पार्टी डिटेल सेक्शन - एकदम चौकोर */
+        .details-section {
+            border: 2px solid #ffc107;
+            background: #111;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-item {
+            padding: 12px;
+            border-bottom: 1px solid #222;
+        }
+        .detail-item:last-child { border-bottom: none; }
+
+        .d-label { font-size: 10px; color: #ffc107; text-transform: uppercase; margin-bottom: 4px; }
+        .d-value { font-size: 14px; color: #fff; font-weight: 600; }
+
+        /* बॉटम नेविगेशन (होम पेज जैसा ही) */
+        .bottom-nav {
+            background: #080808;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            border-top: 2px solid #ffc107;
+        }
+        .nav-item {
+            text-align: center;
+            flex: 1;
+            font-size: 10px;
+            color: #666;
+            text-decoration: none;
+        }
+        .nav-item.active { color: #ffc107; }
+        .nav-item span { display: block; font-size: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="top-header">
+        <h2>📋 PARTY ENTRY DESK</h2>
+    </div>
+
+    <div class="info-card">
+        <div class="info-row">
+            <span class="label">CURRENT BALANCE</span>
+            <span class="value">₹ 24,500.00</span>
+        </div>
+        <div class="info-row">
+            <span class="label">LAST BILL AMT</span>
+            <span class="value">₹ 12,800.00</span>
+        </div>
+    </div>
+
+    <div class="details-section">
+        <div class="detail-item">
+            <div class="d-label">🏢 पार्टी का नाम</div>
+            <div class="d-value">श्री राम ट्रेडिंग कंपनी</div>
+        </div>
+        <div class="detail-item">
+            <div class="d-label">📍 पता (ADDRESS)</div>
+            <div class="d-value">शापुर, राजकोट - 360001</div>
+        </div>
+        <div class="detail-item">
+            <div class="d-label">🆔 GST नंबर</div>
+            <div class="d-value">24ABCDE1234F1Z</div>
+        </div>
+        <div class="detail-item">
+            <div class="d-label">📞 फोन नंबर</div>
+            <div class="d-value">+91 98765 12345</div>
+        </div>
+        <div class="detail-item">
+            <div class="d-label">📧 ईमेल आईडी</div>
+            <div class="d-value">ram.trading@trinetra.com</div>
+        </div>
+    </div>
+</div>
+
+<nav class="bottom-nav">
+    <a href="index.html" class="nav-item"><span>🏠</span>होम</a>
+    <a href="parties.html" class="nav-item active"><span>👥</span>पार्टी</a>
+    <a href="billing.html" class="nav-item"><span>🧾</span>बिल</a>
+    <a href="items.html" class="nav-item"><span>📦</span>आइटम</a>
+    <a href="profile.html" class="nav-item"><span>👤</span>प्रोफाइल</a>
+</nav>
+
+</body>
+</html>
