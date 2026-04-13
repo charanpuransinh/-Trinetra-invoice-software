@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trinetr Account Master</title>
+    <style>
+        /* Zero-Scroll & Core Theme Sync */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        html, body { height: 100%; width: 100%; overflow: hidden; background-color: #000; color: #fff; }
+        body { display: flex; flex-direction: column; }
+
+        .container { flex: 1; display: flex; flex-direction: column; padding: 5px; }
+
+        /* Outer Header (Regular Gold Style) */
+        .header { text-align: center; padding: 12px 0; border-bottom: 1px solid #443c1a; }
+        .header h1 { font-size: 20px; color: #FFD700; letter-spacing: 2px; font-weight: 900; }
+
+        /* Master Slider Logic (Left to Right) */
+        .master-slider {
+            flex: 1;
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 8px;
+            padding: 5px 0;
+        }
+
+        .col-box {
+            min-width: 95%; /* Mobile Focus */
+            flex: 0 0 95%;
+            scroll-snap-align: center;
+            border: 1px solid #443c1a;
+            display: flex;
+            flex-direction: column;
+            background: #050505;
+        }
+
+        /* Inner Table Styles */
+        .scroll-area { overflow-y: auto; flex: 1; }
+        table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        th { position: sticky; top: 0; font-size: 10px; padding: 10px 2px; border: 1px solid #443c1a; z-index: 5; }
+        td { padding: 12px 2px; font-size: 10px; border: 1px solid #443c1a; text-align: center; font-weight: bold; }
+
+        /* --- 1. SALE COLUMN (Inside Green) --- */
+        .sale-col .col-title { background: #004d00; color: #fff; padding: 8px; font-weight: 900; text-align: center; font-size: 11px; }
+        .sale-col th { background: #002200; color: #00FF00; }
+        .sale-col .p-name { color: #00FF00; text-align: left; padding-left: 6px; }
+
+        /* --- 2. BUY COLUMN (Inside Red) --- */
+        .buy-col .col-title { background: #4d0000; color: #fff; padding: 8px; font-weight: 900; text-align: center; font-size: 11px; }
+        .buy-col th { background: #220000; color: #FF4444; }
+        .buy-col .p-name { color: #FF4444; text-align: left; padding-left: 6px; }
+
+        /* --- 3. OFFICE COLUMN (Inside Gold) --- */
+        .office-col .col-title { background: #FFD700; color: #000; padding: 8px; font-weight: 900; text-align: center; font-size: 11px; }
+        .office-col th { background: #1a1a1a; color: #FFD700; }
+        .office-col .p-name { color: #FFD700; text-align: left; padding-left: 6px; }
+
+        /* Footer Action */
+        .footer-action { padding: 8px 0; display: flex; gap: 5px; }
+        .btn-entry { flex: 1; background: #FFD700; color: #000; padding: 14px; border: none; font-weight: 900; font-size: 13px; text-transform: uppercase; }
+
+        /* Bottom Nav Sync */
+        .nav-bar { height: 70px; display: flex; border-top: 1px solid #443c1a; background: #000; }
+        .nav-item { flex: 1; text-align: center; color: #888; text-decoration: none; font-size: 10px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .active { color: #FFD700; }
+        .nav-item span { font-size: 22px; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header"><h1>TRISHUL TRINETRA</h1></div>
+
+    <div class="master-slider">
+        
+        <div class="col-box sale-col">
+            <div class="col-title">SALE PARTY (RECEIVABLE)</div>
+            <div class="scroll-area">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:35%">PARTY NAME</th>
+                            <th>BILL NO</th>
+                            <th>AMT</th>
+                            <th>BAL.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="p-name">SHREE RAM ENT.</td>
+                            <td>#101</td>
+                            <td>50,000</td>
+                            <td style="color:#00FF00">10,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-box buy-col">
+            <div class="col-title">BUY PARTY (PAYABLE)</div>
+            <div class="scroll-area">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:35%">SUPPLIER</th>
+                            <th>BILL NO</th>
+                            <th>PAID</th>
+                            <th>PEND.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="p-name">TATA STEEL</td>
+                            <td>#P-44</td>
+                            <td>1,20,000</td>
+                            <td style="color:#FF4444">80,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-box office-col">
+            <div class="col-title">OFFICE & MISC EXPENSES</div>
+            <div class="scroll-area">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:35%">EXPENSE NAME</th>
+                            <th>DATE</th>
+                            <th>MODE</th>
+                            <th>AMOUNT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="p-name">SHOP RENT</td><td>01-APR</td><td>BANK</td><td>15,000</td></tr>
+                        <tr><td class="p-name">PETROL (CAR)</td><td>02-APR</td><td>CASH</td><td>2,500</td></tr>
+                        <tr><td class="p-name">ELECTRICITY</td><td>05-APR</td><td>UPI</td><td>4,200</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-action">
+        <button class="btn-entry">+ ADD NEW ENTRY / UPDATE</button>
+    </div>
+</div>
+
+<nav class="nav-bar">
+    <a href="index.html" class="nav-item"><span>🏠</span>HOME</a>
+    <a href="parties.html" class="nav-item"><span>👥</span>PARTY</a>
+    <a href="accounts.html" class="nav-item active"><span>💰</span>ACC.</a>
+    <a href="management.html" class="nav-item"><span>📊</span>MGMT</a>
+    <a href="items.html" class="nav-item"><span>📦</span>ITEM</a>
+</nav>
+
+</body>
+                              </html>
+                              
