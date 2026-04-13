@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>पार्टी - विवरण</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            padding: 20px 16px 40px 16px;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        /* डार्क येलो वाला मुख्य कार्ड */
+        .party-card {
+            background: #e6a800;  /* डार्क येलो */
+            border-radius: 28px;
+            padding: 24px 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            color: #1e2a3e;
+        }
+
+        /* हेडर - ENTRY/EXIT DESK वाला भाग */
+        .header-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header-title h2 {
+            font-size: 22px;
+            font-weight: 800;
+            background: #1e2a3e;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: #ffc107;
+            letter-spacing: 1px;
+        }
+        .header-title p {
+            font-size: 13px;
+            margin-top: 8px;
+            font-weight: 500;
+            color: #3b2a00;
+        }
+
+        /* CURRENT PRICE स्टाइल */
+        .current-price {
+            text-align: center;
+            background: #fff3ce;
+            margin: 16px 0;
+            padding: 12px;
+            border-radius: 60px;
+        }
+        .current-price .label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #5a4a00;
+        }
+        .current-price .price {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1e2a3e;
+        }
+
+        /* इन्फो लिस्ट (पार्टी की डिटेल) */
+        .info-list {
+            background: rgba(255, 248, 205, 0.95);
+            border-radius: 24px;
+            padding: 18px 16px;
+            margin: 16px 0 10px;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0d878;
+        }
+        .info-item:last-child {
+            border-bottom: none;
+        }
+        .info-icon {
+            font-size: 24px;
+            width: 36px;
+            text-align: center;
+        }
+        .info-text {
+            flex: 1;
+        }
+        .info-text .label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #7a6400;
+            letter-spacing: 0.5px;
+        }
+        .info-text .value {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e2a3e;
+        }
+
+        /* दो contact numbers के लिए अलग से */
+        .contact-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 6px;
+        }
+        .contact-box {
+            background: #fff3ce;
+            flex: 1;
+            padding: 10px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        .contact-box .label {
+            font-size: 11px;
+            color: #7a6400;
+        }
+        .contact-box .number {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1e2a3e;
+        }
+
+        /* बटन (अगर चाहो तो) */
+        .action-btn {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .edit-btn {
+            background: #1e2a3e;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            color: #ffc107;
+            font-weight: 700;
+            font-size: 16px;
+            width: 80%;
+            max-width: 240px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="party-card">
+        <!-- ENTRY / EXIT DESK HEADER -->
+        <div class="header-title">
+            <h2>📋 पार्टी डेस्क</h2>
+            <p>पूरी जानकारी | कॉन्टैक्ट विवरण</p>
+        </div>
+
+        <!-- CURRENT PRICE स्टाइल (जैसा फोटो में) -->
+        <div class="current-price">
+            <div class="label">ACTIVE PARTY ID</div>
+            <div class="price">#PARTY-101</div>
+        </div>
+
+        <!-- पार्टी की पूरी डिटेल (नाम, पता, GST, ईमेल, फोन) -->
+        <div class="info-list">
+            <div class="info-item">
+                <div class="info-icon">🏢</div>
+                <div class="info-text">
+                    <div class="label">पार्टी का नाम</div>
+                    <div class="value">श्री राम ट्रेडिंग कंपनी</div>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">📍</div>
+                <div class="info-text">
+                    <div class="label">पता (Address)</div>
+                    <div class="value">शापुर, राजकोट - 360001, गुजरात</div>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">🆔</div>
+                <div class="info-text">
+                    <div class="label">GST नंबर</div>
+                    <div class="value">24ABCDE1234F1Z</div>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">📧</div>
+                <div class="info-text">
+                    <div class="label">ईमेल आईडी</div>
+                    <div class="value">ram.trading@trinetra.com</div>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">📞</div>
+                <div class="info-text">
+                    <div class="label">फोन नंबर (प्राथमिक)</div>
+                    <div class="value">+91 98765 12345</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- दो contact numbers वाला भाग -->
+        <div class="contact-row">
+            <div class="contact-box">
+                <div class="label">📱 कॉन्टैक्ट 1</div>
+                <div class="number">+91 94271 23456</div>
+            </div>
+            <div class="contact-box">
+                <div class="label">📱 कॉन्टैक्ट 2</div>
+                <div class="number">+91 99099 34567</div>
+            </div>
+        </div>
+
+        <!-- एक छोटा सा एक्शन बटन (जरूरत हो तो) -->
+        <div class="action-btn">
+            <button class="edit-btn">✏️ एडिट / अपडेट</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
