@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trinetr Master Control</title>
+    <style>
+        /* Core Style Sync */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        html, body { height: 100%; width: 100%; overflow: hidden; background-color: #000; color: #fff; }
+        body { display: flex; flex-direction: column; }
+        .container { flex: 1; display: flex; flex-direction: column; padding: 5px; }
+
+        /* Header */
+        .header { text-align: center; padding: 10px 0; border-bottom: 1px solid #443c1a; }
+        .header h1 { font-size: 18px; color: #FFD700; font-weight: 900; letter-spacing: 1px; }
+
+        /* Slider Columns */
+        .master-slider { flex: 1; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; padding: 5px 0; }
+        .col-box { min-width: 95%; flex: 0 0 95%; scroll-snap-align: center; border: 1px solid #443c1a; display: flex; flex-direction: column; background: #050505; }
+
+        /* Table Design (Watchlist Grid) */
+        .scroll-area { overflow-y: auto; flex: 1; }
+        table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        th { position: sticky; top: 0; font-size: 9px; padding: 10px 2px; border: 1px solid #443c1a; background: #111; color: #FFD700; z-index: 5; }
+        td { padding: 12px 2px; font-size: 10px; border: 1px solid #443c1a; text-align: center; font-weight: bold; min-height: 45px; }
+
+        /* Direct Edit Highlight */
+        td[contenteditable="true"] { background: #0a0a0a; color: #fff; outline: none; border: 1px dashed #FFD700; }
+
+        /* Color Coding */
+        .sale-col .col-title { background: #004d00; color: #fff; padding: 8px; font-weight: 900; text-align: center; font-size: 11px; }
+        .buy-col .col-title { background: #4d0000; color: #fff; padding: 8px; font-weight: 900; text-align: center; font-size: 11px; }
+        .office-col .col-title { background: #8b7500; color: #fff; padding: 8px; font-weight: 900; text-align: center; font-size: 11px; }
+
+        .p-name { text-align: left; padding-left: 6px; color: #FFD700; }
+        .val-bal { font-weight: 900; }
+
+        /* Footer Action Buttons */
+        .footer-action { padding: 8px 0; display: flex; gap: 5px; }
+        .btn-add { flex: 1; background: #222; color: #FFD700; border: 1px solid #FFD700; padding: 12px; font-weight: 900; font-size: 11px; }
+        .btn-save { flex: 1; background: #FFD700; color: #000; border: none; padding: 12px; font-weight: 900; font-size: 11px; }
+
+        /* Nav Bar */
+        .nav-bar { height: 70px; display: flex; border-top: 1px solid #443c1a; background: #000; }
+        .nav-item { flex: 1; text-align: center; color: #888; text-decoration: none; font-size: 10px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .active { color: #FFD700; }
+        .nav-item span { font-size: 22px; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header"><h1>TRISHUL TRINETRA</h1></div>
+
+    <div class="master-slider" id="slider">
+        
+        <div class="col-box sale-col">
+            <div class="col-title">SALE PARTIES (RECEIVABLE)</div>
+            <div class="scroll-area">
+                <table id="saleTable">
+                    <thead><tr><th style="width:35%">PARTY NAME</th><th>BILL</th><th>ADV.</th><th>BAL.</th></tr></thead>
+                    <tbody>
+                        <tr oninput="calcRow(this, 'sale')">
+                            <td class="p-name" contenteditable="true">SHREE RAM ENT.</td>
+                            <td contenteditable="true" class="v-bill">5000</td>
+                            <td contenteditable="true" class="v-adv">1000</td>
+                            <td class="val-bal" style="color:#00FF00">4000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer-action">
+                <button class="btn-add" onclick="addRow('saleTable', 'sale')">+ ADD SALE PARTY</button>
+            </div>
+        </div>
+
+        <div class="col-box buy-col">
+            <div class="col-title">BUY PARTIES (PAYABLE)</div>
+            <div class="scroll-area">
+                <table id="buyTable">
+                    <thead><tr><th style="width:35%">SUPPLIER</th><th>BILL</th><th>PAID</th><th>PEND.</th></tr></thead>
+                    <tbody>
+                        <tr oninput="calcRow(this, 'buy')">
+                            <td class="p-name" contenteditable="true">TATA STEEL</td>
+                            <td contenteditable="true" class="v-bill">10000</td>
+                            <td contenteditable="true" class="v-adv">5000</td>
+                            <td class="val-bal" style="color:#FF4444">5000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer-action">
+                <button class="btn-add" onclick="addRow('buyTable', 'buy')">+ ADD SUPPLIER</button>
+            </div>
+        </div>
+
+        <div class="col-box office-col">
+            <div class="col-title">OFFICE EXPENSES</div>
+            <div class="scroll-area">
+                <table id="officeTable">
+                    <thead><tr><th style="width:35%">EXPENSE NAME</th><th>DATE</th><th>MODE</th><th>AMOUNT</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td class="p-name" contenteditable="true">SHOP RENT</td>
+                            <td contenteditable="true">01-APR</td>
+                            <td contenteditable="true">CASH</td>
+                            <td contenteditable="true">15000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer-action">
+                <button class="btn-add" onclick="addRow('officeTable', 'office')">+ ADD EXPENSE</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="padding: 10px 5px;">
+        <button class="btn-save" onclick="saveToLocal()">SAVE ALL CHANGES PERMANENTLY</button>
+    </div>
+</div>
+
+<nav class="nav-bar">
+    <a href="index.html" class="nav-item"><span>🏠</span>HOME</a>
+    <a href="parties.html" class="nav-item"><span>👥</span>PARTY</a>
+    <a href="master_acc.html" class="nav-item active"><span>💰</span>ACC.</a>
+    <a href="management.html" class="nav-item"><span>📊</span>MGMT</a>
+    <a href="items.html" class="nav-item"><span>📦</span>ITEM</a>
+</nav>
+
+<script>
+    // 1. Calculation Logic
+    function calcRow(row, type) {
+        let bill = parseFloat(row.querySelector('.v-bill').innerText.replace(/,/g, '')) || 0;
+        let adv = parseFloat(row.querySelector('.v-adv').innerText.replace(/,/g, '')) || 0;
+        let balField = row.querySelector('.val-bal');
+        let res = bill - adv;
+        balField.innerText = res;
+        balField.style.color = (type === 'sale') ? "#00FF00" : "#FF4444";
+    }
+
+    // 2. Add New Row Logic
+    function addRow(tableID, type) {
+        let table = document.getElementById(tableID).getElementsByTagName('tbody')[0];
+        let newRow = table.insertRow();
+        
+        if (type === 'office') {
+            newRow.innerHTML = `<td class="p-name" contenteditable="true">NEW ITEM</td><td contenteditable="true">-</td><td contenteditable="true">-</td><td contenteditable="true">0</td>`;
+        } else {
+            newRow.setAttribute("oninput", `calcRow(this, '${type}')`);
+            newRow.innerHTML = `<td class="p-name" contenteditable="true">NEW PARTY</td><td contenteditable="true" class="v-bill">0</td><td contenteditable="true" class="v-adv">0</td><td class="val-bal">0</td>`;
+        }
+    }
+
+    // 3. Save Data to Device
+    function saveToLocal() {
+        const fullContent = document.getElementById('slider').innerHTML;
+        localStorage.setItem('trinetra_master_data', fullContent);
+        alert("Data Saved Successfully!");
+    }
+
+    // 4. Load Data on Refresh
+    window.onload = function() {
+        const saved = localStorage.getItem('trinetra_master_data');
+        if (saved) {
+            document.getElementById('slider').innerHTML = saved;
+        }
+    };
+</script>
+
+</body>
+</html>
