@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trinetra Pro</title>
+    <style>
+        /* Zero Scroll Logic */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        
+        html, body { 
+            height: 100%; 
+            width: 100%; 
+            overflow: hidden; 
+            background-color: #000000;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            color: #ffffff;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+        }
+
+        /* 1. TOP LOGO SECTION */
+        .logo-header {
+            text-align: center;
+            border: 1px solid #FFD700;
+            padding: 10px;
+            margin-bottom: 12px;
+            background-color: #0a0a0a;
+        }
+        .logo-header h1 { 
+            font-size: 20px; 
+            color: #FFD700; 
+            letter-spacing: 3px; 
+            font-weight: 900;
+        }
+
+        /* 2. MAIN PARTY DETAIL BOX (Step-by-Step) */
+        .party-main-box {
+            border: 2px solid #FFD700;
+            background-color: #111111;
+            flex: 1; /* Zyada jagah lega */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header for Party Box */
+        .box-title {
+            background-color: #FFD700;
+            color: #000000;
+            font-size: 12px;
+            font-weight: 900;
+            padding: 6px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        /* Line-wise Details */
+        .detail-list {
+            display: flex;
+            flex-direction: column;
+            padding: 5px;
+        }
+
+        .data-line {
+            border-bottom: 1px solid #222;
+            padding: 12px 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        .data-line:last-child { border-bottom: none; }
+
+        .label {
+            font-size: 10px;
+            color: #FFD700;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+
+        .value {
+            font-size: 15px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        /* 3. GENERATE BUTTON */
+        .action-area {
+            margin-top: 12px;
+        }
+        .btn-gen {
+            background-color: #FFD700;
+            color: #000000;
+            border: none;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 900;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        /* 4. BOTTOM NAV */
+        .nav-bar {
+            height: 70px;
+            background-color: #000000;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 2px solid #FFD700;
+        }
+        .nav-link {
+            text-align: center;
+            flex: 1;
+            font-size: 10px;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .nav-link.active { color: #FFD700; }
+        .nav-link b { display: block; font-size: 20px; margin-bottom: 3px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo-header">
+        <h1>TRISHUL TRINETRA</h1>
+    </div>
+
+    <div class="party-main-box">
+        <div class="box-title">CURRENT PARTY DETAILS</div>
+        
+        <div class="detail-list">
+            <div class="data-line">
+                <span class="label">Party Name</span>
+                <span class="value">SHREE RAM TRADING CO.</span>
+            </div>
+
+            <div class="data-line">
+                <span class="label">Address</span>
+                <span class="value">SHAHPUR, RAJKOT, GUJARAT</span>
+            </div>
+
+            <div class="data-line">
+                <span class="label">GST Number</span>
+                <span class="value">24ABCDE1234F1Z</span>
+            </div>
+
+            <div class="data-line">
+                <span class="label">Telephone</span>
+                <span class="value">+91 98765 43210</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="action-area">
+        <button class="btn-gen">GENERATE NEXT BILL</button>
+    </div>
+</div>
+
+<nav class="nav-bar">
+    <a href="index.html" class="nav-link active"><b>🏠</b>HOME</a>
+    <a href="parties.html" class="nav-link"><b>👥</b>PARTY</a>
+    <a href="billing.html" class="nav-link"><b>🧾</b>BILL</a>
+    <a href="items.html" class="nav-link"><b>📦</b>ITEM</a>
+    <a href="profile.html" class="nav-link"><b>👤</b>USER</a>
+</nav>
+
+</body>
+</html>
