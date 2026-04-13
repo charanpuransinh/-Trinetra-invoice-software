@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trinetr Master Accounts</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        html, body { height: 100%; width: 100%; overflow: hidden; background-color: #000; color: #fff; }
+        body { display: flex; flex-direction: column; }
+        .container { flex: 1; display: flex; flex-direction: column; padding: 5px; }
+
+        /* Header Style */
+        .header { text-align: center; padding: 12px 0; border-bottom: 1px solid #443c1a; }
+        .header h1 { font-size: 20px; color: #FFD700; font-weight: 900; }
+
+        /* Slider Columns */
+        .master-slider { flex: 1; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 8px; padding: 5px 0; }
+        .col-box { min-width: 95%; flex: 0 0 95%; scroll-snap-align: center; border: 1px solid #443c1a; display: flex; flex-direction: column; background: #050505; }
+
+        /* Table Design */
+        .scroll-area { overflow-y: auto; flex: 1; }
+        table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        th { position: sticky; top: 0; font-size: 10px; padding: 10px 2px; border: 1px solid #443c1a; background: #111; color: #FFD700; }
+        td { padding: 12px 2px; font-size: 11px; border: 1px solid #443c1a; text-align: center; font-weight: bold; height: 45px; }
+
+        /* Edit Mode Highlights */
+        td[contenteditable="true"] { background: #111; outline: 1px solid #FFD700; color: #fff; }
+
+        /* Section Colors */
+        .sale-col .col-title { background: #004d00; color: #fff; padding: 8px; font-weight: 900; text-align: center; }
+        .buy-col .col-title { background: #4d0000; color: #fff; padding: 8px; font-weight: 900; text-align: center; }
+        .office-col .col-title { background: #FFD700; color: #000; padding: 8px; font-weight: 900; text-align: center; }
+
+        .p-name { text-align: left; padding-left: 6px; }
+        .val-bal { color: #FF4444; } /* Alert for balance */
+
+        /* Footer */
+        .footer-action { padding: 8px 0; display: flex; gap: 5px; }
+        .btn-save { flex: 1; background: #FFD700; color: #000; padding: 14px; border: none; font-weight: 900; text-transform: uppercase; }
+
+        /* Nav Bar */
+        .nav-bar { height: 70px; display: flex; border-top: 1px solid #443c1a; background: #000; }
+        .nav-item { flex: 1; text-align: center; color: #888; text-decoration: none; font-size: 10px; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .active { color: #FFD700; }
+        .nav-item span { font-size: 22px; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header"><h1>TRISHUL TRINETRA</h1></div>
+
+    <div class="master-slider">
+        <div class="col-box sale-col">
+            <div class="col-title">SALE PARTY (RECEIVABLE)</div>
+            <div class="scroll-area">
+                <table id="saleTable">
+                    <thead><tr><th style="width:35%">PARTY NAME</th><th>BILL</th><th>ADV.</th><th>BAL.</th></tr></thead>
+                    <tbody>
+                        <tr oninput="calcRow(this, 'sale')">
+                            <td class="p-name" contenteditable="true">SHREE RAM ENT.</td>
+                            <td contenteditable="true" class="val-bill">50000</td>
+                            <td contenteditable="true" class="val-adv">10000</td>
+                            <td class="val-bal" style="color:#00FF00">40000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-box buy-col">
+            <div class="col-title">BUY PARTY (PAYABLE)</div>
+            <div class="scroll-area">
+                <table id="buyTable">
+                    <thead><tr><th style="width:35%">SUPPLIER</th><th>BILL</th><th>PAID</th><th>PEND.</th></tr></thead>
+                    <tbody>
+                        <tr oninput="calcRow(this, 'buy')">
+                            <td class="p-name" contenteditable="true">TATA STEEL</td>
+                            <td contenteditable="true" class="val-bill">100000</td>
+                            <td contenteditable="true" class="val-adv">60000</td>
+                            <td class="val-bal" style="color:#FF4444">40000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-action">
+        <button class="btn-save" onclick="saveData()">SAVE ALL DATA (LOCAL)</button>
+    </div>
+</div>
+
+<nav class="nav-bar">
+    <a href="index.html" class="nav-item"><span>🏠</span>HOME</a>
+    <a href="parties.html" class="nav-item"><span>👥</span>PARTY</a>
+    <a href="accounts.html" class="nav-item active"><span>💰</span>ACC.</a>
+    <a href="management.html" class="nav-item"><span>📊</span>MGMT</a>
+    <a href="items.html" class="nav-item"><span>📦</span>ITEM</a>
+</nav>
+
+<script>
+    // Calculations Logic
+    function calcRow(row, type) {
+        let bill = parseFloat(row.querySelector('.val-bill').innerText) || 0;
+        let adv = parseFloat(row.querySelector('.val-adv').innerText) || 0;
+        let balField = row.querySelector('.val-bal');
+        
+        let result = bill - adv;
+        balField.innerText = result.toLocaleString('en-IN');
+        
+        // Color Change Logic
+        if(type === 'sale') balField.style.color = "#00FF00";
+        if(type === 'buy') balField.style.color = "#FF4444";
+    }
+
+    // Save to Phone Memory
+    function saveData() {
+        const data = document.body.innerHTML;
+        localStorage.setItem('trinetra_acc_data', data);
+        alert("Data Successfully Saved on this Device!");
+    }
+
+    // Load Data on Startup
+    window.onload = function() {
+        if(localStorage.getItem('trinetra_acc_data')) {
+            // document.body.innerHTML = localStorage.getItem('trinetra_acc_data');
+            // Hum isse aur advance kar sakte hain future mein
+        }
+    }
+</script>
+
+</body>
+  </html>
+  
